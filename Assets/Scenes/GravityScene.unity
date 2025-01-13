@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetLane: {fileID: 1794265689}
-  m_targetRotation: {x: 0, y: 0, z: 0}
+  m_targetRotation: {fileID: 11400000, guid: b8101f99babe0f54b8103acee1672b7c, type: 2}
 --- !u!135 &253334839
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_targetLane: {fileID: 57839218}
-  m_targetRotation: {x: 0, y: 0, z: -90}
+  m_targetRotation: {fileID: 11400000, guid: c75dc79cf4074094184078ad528be070, type: 2}
 --- !u!135 &259735998
 SphereCollider:
   m_ObjectHideFlags: 0
