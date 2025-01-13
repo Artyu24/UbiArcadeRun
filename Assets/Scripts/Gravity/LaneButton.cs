@@ -6,7 +6,7 @@ public class LaneButton : MonoBehaviour
     [SerializeField]
     private Transform m_targetLane;
     [SerializeField]
-    private Vector3 m_targetRotation;
+    private SOLaneData m_targetRotation;
 
     private GravitySwitch m_playerGravitySwitch;
 
@@ -19,7 +19,7 @@ public class LaneButton : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        m_playerGravitySwitch.GoToLane(m_targetLane, m_targetRotation);
+        m_playerGravitySwitch.GoToLane(m_targetLane, m_targetRotation.GetRotation);
     }
 
 
