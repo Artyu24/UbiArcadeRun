@@ -15,7 +15,6 @@ public class obstaclespawner : MonoBehaviour,ITickable
         _currentBeatsLast--;
         if (_currentBeatsLast <= 0) 
         {
-            //on spawn le block
             GameObject newobstacle= Instantiate(obstacle,transform.position,Quaternion.identity);
             _currentBeatsLast = BeatBeforeSpawn;
         }
