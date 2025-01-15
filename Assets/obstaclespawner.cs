@@ -6,10 +6,19 @@ public class obstaclespawner : MonoBehaviour,ITickable
     [field:SerializeField] public int BeatBeforeSpawn {  get; private set; }
     [field: SerializeField] public GameObject obstacle {  get; private set; }
     private int _currentBeatsLast;
-    private void Awake()
+    private Song _currentSong;
+    void Awake()
     {
-        _currentBeatsLast= BeatBeforeSpawn;
+        _currentBeatsLast = BeatBeforeSpawn;
     }
+    void Start()
+    {
+        Metronome.instance.OnMusicStart.AddListener(SubToBeat);
+        Metronome.instance.OnMusicStop.AddListener(UnSubToBeat);
+        
+        Metronome.instance.ToTick1.Add(this);
+    }
+
     public void Tick()
     {
         _currentBeatsLast--;
@@ -23,10 +32,16 @@ public class obstaclespawner : MonoBehaviour,ITickable
     {
         
     }
-    void Start()
-    {
-        Metronome.instance.ToTick.Add(this);
-    }
-     
 
+
+    public void SubToBeat(Song song)
+    {
+        _currentSong=song;
+        _currentSong.Beat1.AddListener(Tick);
+    }
+
+    public void UnSubToBeat()
+    {
+        _currentSong.Beat1.RemoveListener(Tick);
+    }
 }
