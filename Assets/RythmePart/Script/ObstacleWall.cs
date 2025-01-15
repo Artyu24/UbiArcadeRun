@@ -1,6 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
-
+using NaughtyAttributes;
 public class ObstacleWall : RythmeObject,IDestructible
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,9 +23,9 @@ public class ObstacleWall : RythmeObject,IDestructible
     // Update is called once per frame
     void Update()
     {
-        
-    }
 
+    }
+    [Button]
     public void Destroy()
     {
         Destroy(gameObject);

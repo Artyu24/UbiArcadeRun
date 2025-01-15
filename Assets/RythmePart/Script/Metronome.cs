@@ -80,6 +80,7 @@ public class Metronome : MonoBehaviour
     public void StartSound()
     {
         StartCoroutine(musicDuration());
+        _currentSong.SetupBPM();
         Source.resource = _currentSong.Music;
         Source.Play();
         OnMusicStart.Invoke(_currentSong);
