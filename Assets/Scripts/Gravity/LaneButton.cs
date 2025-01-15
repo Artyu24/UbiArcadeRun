@@ -4,22 +4,23 @@ public class LaneButton : MonoBehaviour
 {
     [Header("Target Lane & Rotation to have")]
     [SerializeField]
-    private Transform m_targetLane;
-    [SerializeField]
-    private SOLaneData m_targetRotation;
+    private CardinalPoint m_cardinalLine;
 
-    private GravitySwitch m_playerGravitySwitch;
+    [SerializeField]
+    private bool m_isLeftLane;
+
+    private PlayerMovement m_playerMovement;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        m_playerGravitySwitch = GameObject.FindWithTag("Player").GetComponent<GravitySwitch>();
+        m_playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        m_playerGravitySwitch.GoToLane(m_targetLane, m_targetRotation.GetRotation);
+        m_playerMovement.GoToLane(m_cardinalLine, m_isLeftLane);
     }
 
 
