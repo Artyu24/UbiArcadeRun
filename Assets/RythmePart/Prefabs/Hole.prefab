@@ -242,3 +242,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainBeatIndex: 0
   _plank: {fileID: 6052829995999454826}
+  _holeObject: {fileID: 7528783486780710445}

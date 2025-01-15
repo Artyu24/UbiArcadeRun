@@ -5,6 +5,7 @@ using UnityEngine;
 public class ObstacleHole : RythmeObject,IDestructible
 {
     [SerializeField] private GameObject _plank;
+    [SerializeField] private GameObject _holeObject;
     private Vector3 _PlankScale;
 
     
@@ -31,6 +32,6 @@ public class ObstacleHole : RythmeObject,IDestructible
     public override void Tick()
     {
         transform.DOMoveX(transform.position.x + 5, 0.5f);
-        transform.DOPunchScale(new Vector3(1.1f, 1.1f, 1.1f), 0.2f);
+        _holeObject.transform.DOPunchScale(new Vector3(1.1f, 0f, 1.1f), 0.2f);
     }
 }

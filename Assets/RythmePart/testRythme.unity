@@ -735,7 +735,7 @@ MonoBehaviour:
     - 2.16
     - 0.5
     <SongBPM>k__BackingField: 112
-    <Duration>k__BackingField: 136
+    <Duration>k__BackingField: 135.5
     Beat1:
       m_PersistentCalls:
         m_Calls: []
