@@ -2,13 +2,13 @@ using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
 
-public class ObstacleHole : RythmeObject,IDestructible
+public class ObstacleHole : RythmeObject,IDestructible,Ipoolable
 {
     [SerializeField] private GameObject _plank;
     [SerializeField] private GameObject _holeObject;
     private Vector3 _PlankScale;
+    private bool _isTicking;
 
-    
     [Button]
     public void Destroy()
     {
@@ -31,7 +31,29 @@ public class ObstacleHole : RythmeObject,IDestructible
 
     public override void Tick()
     {
+        if (!_isTicking)
+            return;
         transform.DOMoveX(transform.position.x + 5, 0.5f);
         _holeObject.transform.DOPunchScale(new Vector3(1.1f, 0f, 1.1f), 0.2f);
+
+    }
+
+    public void Pool()
+    {
+        //throw new System.NotImplementedException();
+        _isTicking = false;
+    }
+
+    public void Activate()
+    {
+        //throw new System.NotImplementedException();
+    }
+
+    public void UnPool()
+    {
+        _holeObject.transform.localScale = Vector3.one;
+        _plank.transform.localScale= Vector3.zero;
+        _isTicking = true;
+        //throw new System.NotImplementedException();
     }
 }
