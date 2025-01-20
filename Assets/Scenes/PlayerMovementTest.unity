@@ -291,8 +291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fd8f5e2e1b23c4ca0dab735b391583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_targetLane: {fileID: 1794265689}
-  m_targetRotation: {fileID: 11400000, guid: b8101f99babe0f54b8103acee1672b7c, type: 2}
+  m_buttonCardinalLine: 0
+  m_isLeftLane: 0
 --- !u!135 &253334839
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -399,8 +399,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fd8f5e2e1b23c4ca0dab735b391583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_targetLane: {fileID: 57839218}
-  m_targetRotation: {fileID: 11400000, guid: c75dc79cf4074094184078ad528be070, type: 2}
+  m_buttonCardinalLine: 0
+  m_isLeftLane: 0
 --- !u!135 &259735998
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -504,6 +504,7 @@ GameObject:
   - component: {fileID: 269684576}
   - component: {fileID: 269684581}
   - component: {fileID: 269684582}
+  - component: {fileID: 269684584}
   - component: {fileID: 269684583}
   m_Layer: 0
   m_Name: --Player--
@@ -644,6 +645,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineManager: {fileID: 98195450}
   _movementDuration: 0.4
+  m_timeChangingLane: 0.5
+  m_timeRotating: 0.5
+  isChangingLane: 0
+  OnLeaveLine:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLandLine:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &269684583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,11 +735,40 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 269684584}
+        m_TargetAssemblyTypeName: PlayerHit, Assembly-CSharp
+        m_MethodName: LaunchHit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f939aa3f-4267-4c8f-8ac9-53a902bcbff0
+    m_ActionName: Player/Hit
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &269684584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269684575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ccc0f47931dd8c46bc32e75a96ac2a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dist: 1
 --- !u!1 &293460172
 GameObject:
   m_ObjectHideFlags: 0
