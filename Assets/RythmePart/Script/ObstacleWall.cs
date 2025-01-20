@@ -28,7 +28,7 @@ public class ObstacleWall : RythmeObject,IDestructible,Ipoolable
         if (!_isTicking)
             return;
         transform.DOMoveX(transform.position.x + 5, 0.5f);
-        transform.DOPunchScale(new Vector3(1.1f, 1.1f, 1.1f), 0.2f);
+        transform.DOPunchScale(new Vector3(1.1f, 1.1f, 1.1f), 0.2f).OnComplete(()=> transform.DOScale(Vector3.one,0.1f));
 
     }
     // Update is called once per frame

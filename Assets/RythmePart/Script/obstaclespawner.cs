@@ -7,21 +7,24 @@ public class obstaclespawner : MonoBehaviour, ITickable
 
     [field: SerializeField] public int BeatBeforeSpawnMin { get; set; }
     [field: SerializeField] public int BeatBeforeSpawnMax { get; private set; }
-    [field: SerializeField] public List<GameObject> obstacles { get;  set; }
-    
 
-    [field: SerializeField] public bool IsFocused { get; private set; }
+    [field: SerializeField] public int BeatBeforeFirstUtil { get; private set; }
+    [field: SerializeField] public List<GameObject> obstacles { get;  set; }
+    [field: SerializeField] public List<GameObject> utilObject { get; set; }
 
     [SerializeField]private Transform _leftPos, _rightPos;
     private int _currentBeatsLast;
+    private int _currentBeatBeforeFirstUtil;
     private Song _currentSong;
 
     [SerializeField] List<GameObject> _pool=new List<GameObject>();
     [SerializeField] int _numberToPool=10;
     [SerializeField] float _OutofPoolDuration = 10;
+
     void Awake()
     {
         _currentBeatsLast = Random.Range(BeatBeforeSpawnMin, BeatBeforeSpawnMax+1);
+        _currentBeatBeforeFirstUtil= BeatBeforeFirstUtil;
     }
     void Start()
     {
@@ -35,7 +38,6 @@ public class obstaclespawner : MonoBehaviour, ITickable
             for (int j = 0; j < obstacles.Count; j++)
             {
                 _pool.Add(Instantiate(obstacles[j],new Vector3(1000,1000,1000), transform.rotation));
-                
             }
         }
         
@@ -49,11 +51,16 @@ public class obstaclespawner : MonoBehaviour, ITickable
         }
 
         int indexRand = Random.Range(0, _pool.Count);
-
+        
         if (_pool[indexRand].TryGetComponent(out Ipoolable pooled))
         {
             GameObject currenObject = _pool[indexRand];
-            currenObject.transform.position = Random.Range(0, 2) == 0 ? _leftPos.position : _rightPos.position;
+            bool isAtRightPosition = Random.value < 0.5f;
+            currenObject.transform.position = !isAtRightPosition ? _leftPos.position : _rightPos.position;
+
+            if (currenObject.TryGetComponent(out LaneButton gravtityButton))
+                gravtityButton.SetButtonCardinalPoint(!isAtRightPosition ? CardinalPoint.WEST : CardinalPoint.EAST, !isAtRightPosition);
+
             pooled.UnPool();
             _pool.Remove((_pool[indexRand]));
             StartCoroutine(BackToPoolDelay(currenObject));
@@ -71,7 +78,15 @@ public class obstaclespawner : MonoBehaviour, ITickable
         public void Tick()
         {
             _currentBeatsLast--;
-            if (_currentBeatsLast <= 0 && IsFocused)
+            _currentBeatBeforeFirstUtil--;
+            if (_currentBeatBeforeFirstUtil <= 0)
+            {
+                bool isAtRightPosition = Random.value < 0.5f;
+                GameObject go= Instantiate(utilObject[0], !isAtRightPosition ? _leftPos.position : _rightPos.position, transform.rotation);
+            if (go.TryGetComponent(out LaneButton gravtityButton))
+                gravtityButton.SetButtonCardinalPoint(!isAtRightPosition ? CardinalPoint.WEST : CardinalPoint.EAST, !isAtRightPosition);
+        }
+            else if (_currentBeatsLast <= 0)
             {
                 SpawnObstacle();
                 _currentBeatsLast = Random.Range(BeatBeforeSpawnMin, BeatBeforeSpawnMax + 1);
