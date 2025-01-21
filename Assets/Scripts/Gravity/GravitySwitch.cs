@@ -15,7 +15,16 @@ public class GravitySwitch : MonoBehaviour
     //Temporary Movement
     private void Update()
     {
-        if(Input.GetKey(KeyCode.UpArrow))this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 1), Time.deltaTime * 5);
-        if(Input.GetKey(KeyCode.DownArrow))this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z - 1), Time.deltaTime * 5);
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + 1), Time.deltaTime * 5);
+            PlayerHP.Instance.TakeDamage(5);
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z - 1), Time.deltaTime * 5);
+            PlayerHP.Instance.Heal(5);
+        }
+
     }
 }
