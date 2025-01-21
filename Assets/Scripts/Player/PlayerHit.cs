@@ -5,6 +5,10 @@ public class PlayerHit : MonoBehaviour
 {
     [SerializeField, Min(0.1f)] private float _dist = 1f;
     [SerializeField, Min(1)] private int _scoreHit = 5;
+    
+    [Header("Player Life")]
+    [SerializeField, Min(1)] private int _damagePlayer = 5;
+    [SerializeField, Min(1)] private int _lifeGainPlayer = 1;
     public void LaunchHit(InputAction.CallbackContext ctx)
     {
         if (ctx.started)
@@ -18,8 +22,18 @@ public class PlayerHit : MonoBehaviour
                 {
                     objectHit.Destroy();
                     ScoreSystem.AddToScore(_scoreHit);
+                    PlayerHP.HealPlayer(_lifeGainPlayer);
                 }
             }
+        }
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        IDestructible objectHit = other.transform.GetComponent<IDestructible>();
+        if (objectHit != null)
+        {
+            PlayerHP.DamagePlayer(_damagePlayer);
         }
     }
 }
