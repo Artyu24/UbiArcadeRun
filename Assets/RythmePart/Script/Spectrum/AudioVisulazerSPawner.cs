@@ -33,6 +33,13 @@ public class AudioVisulazerSPawner : MonoBehaviour
     [Button]
     public void SpawnVisualizer()
     {
+        foreach (var item in spawned)
+            {
+                DestroyImmediate(item.gameObject);
+            }
+        spawned.Clear();
+
+
         if (!_isCircle)
             SpawnInLine();
         else
@@ -53,7 +60,7 @@ public class AudioVisulazerSPawner : MonoBehaviour
         curBias = biasToAttribute;
         for (int i = 0; i < numberToDisplay; i++)
         {
-            GameObject go = Instantiate(Visualiazer, transform.position + currentOfset, transform.rotation);
+            GameObject go = Instantiate(Visualiazer, transform.position + currentOfset, transform.rotation,transform);
 
             
             if (go.TryGetComponent(out AudioSync sync))
@@ -62,16 +69,18 @@ public class AudioVisulazerSPawner : MonoBehaviour
                 go.transform.localScale = _scale;
                 go.GetComponent<ScaleOnSpectrum>().restScale = _scale;
                 go.GetComponent<ScaleOnSpectrum>().beatScale = _Beatscale;
+                spawned.Add(go);
             }
             if (_isMirroring)
             {
-                GameObject go2 = Instantiate(Visualiazer, transform.position - currentOfset, transform.rotation);
+                GameObject go2 = Instantiate(Visualiazer, transform.position - currentOfset, transform.rotation, transform);
                 if (go2.TryGetComponent(out AudioSync sync2))
                 {
                     sync2.bias = curBias;
                     go2.transform.localScale = _scale;
                     go2.GetComponent<ScaleOnSpectrum>().restScale = _scale;
                     go2.GetComponent<ScaleOnSpectrum>().beatScale = _Beatscale;
+                    spawned.Add(go2);
                 }
             }
             //Gizmos.DrawCube(transform.position + currentOfset, Visualiazer.transform.localScale);
@@ -133,7 +142,7 @@ public class AudioVisulazerSPawner : MonoBehaviour
             // Calcul du point à gauche
             Quaternion rotation = Quaternion.AngleAxis(i * angleIncrement, transform.forward);
             Vector3 pointPositionLeft = transform.position + rotation * startPosition;
-            GameObject goLeft = Instantiate(Visualiazer, pointPositionLeft, rotation);
+            GameObject goLeft = Instantiate(Visualiazer, pointPositionLeft, rotation, transform);
 
             if (goLeft.TryGetComponent(out AudioSync syncLeft))
             {
@@ -142,12 +151,13 @@ public class AudioVisulazerSPawner : MonoBehaviour
                 
                 goLeft.GetComponent<ScaleOnSpectrum>().restScale = -_scale;
                 goLeft.GetComponent<ScaleOnSpectrum>().beatScale =- _Beatscale;
+                spawned.Add(goLeft);
             }
 
             // Calcul du point en miroir (à droite)
             Quaternion mirrorRotation = Quaternion.AngleAxis(-i * angleIncrement, transform.forward); // Rotation opposée
             Vector3 pointPositionRight = transform.position + mirrorRotation * startPosition;
-            GameObject goRight = Instantiate(Visualiazer, pointPositionRight, mirrorRotation);
+            GameObject goRight = Instantiate(Visualiazer, pointPositionRight, mirrorRotation, transform);
 
             if (goRight.TryGetComponent(out AudioSync syncRight))
             {
@@ -155,6 +165,7 @@ public class AudioVisulazerSPawner : MonoBehaviour
                 goRight.transform.localScale = -_scale; // Échelle normale pour le côté miroir
                 goRight.GetComponent<ScaleOnSpectrum>().restScale = -_scale;
                 goRight.GetComponent<ScaleOnSpectrum>().beatScale = _Beatscale;
+                spawned.Add(goRight);
             }
 
             // Incrémentation du bias pour les deux côtés

@@ -81,7 +81,8 @@ public class obstaclespawner : MonoBehaviour, ITickable
             _currentBeatBeforeFirstUtil--;
             if (_currentBeatBeforeFirstUtil <= 0)
             {
-                bool isAtRightPosition = Random.value < 0.5f;
+            _currentBeatBeforeFirstUtil= Random.Range(BeatBeforeSpawnMin*10, BeatBeforeSpawnMax*10);
+            bool isAtRightPosition = Random.value < 0.5f;
                 GameObject go= Instantiate(utilObject[0], !isAtRightPosition ? _leftPos.position : _rightPos.position, transform.rotation);
             if (go.TryGetComponent(out LaneButton gravtityButton))
                 gravtityButton.SetButtonCardinalPoint(!isAtRightPosition ? CardinalPoint.WEST : CardinalPoint.EAST, !isAtRightPosition);
