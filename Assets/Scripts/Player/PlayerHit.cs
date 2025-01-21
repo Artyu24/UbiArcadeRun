@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerHit : MonoBehaviour
 {
     [SerializeField, Min(0.1f)] private float _dist = 1f;
-    
+    [SerializeField, Min(1)] private int _scoreHit = 5;
     public void LaunchHit(InputAction.CallbackContext ctx)
     {
         if (ctx.started)
@@ -17,6 +17,7 @@ public class PlayerHit : MonoBehaviour
                 if (objectHit != null)
                 {
                     objectHit.Destroy();
+                    ScoreSystem.AddToScore(_scoreHit);
                 }
             }
         }
