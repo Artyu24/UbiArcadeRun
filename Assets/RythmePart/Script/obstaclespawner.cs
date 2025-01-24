@@ -6,6 +6,7 @@ public class obstaclespawner : MonoBehaviour, ITickable
 {
 
     [field: SerializeField] public int BeatBeforeSpawnMin { get; set; }
+    [field: SerializeField] public CardinalPoint CardinalPoint { get; set; }
     [field: SerializeField] public int BeatBeforeSpawnMax { get; private set; }
 
     [field: SerializeField] public int BeatBeforeFirstUtil { get; private set; }
@@ -59,7 +60,7 @@ public class obstaclespawner : MonoBehaviour, ITickable
             currenObject.transform.position = !isAtRightPosition ? _leftPos.position : _rightPos.position;
 
             if (currenObject.TryGetComponent(out LaneButton gravtityButton))
-                gravtityButton.SetButtonCardinalPoint(!isAtRightPosition ? CardinalPoint.WEST : CardinalPoint.EAST, !isAtRightPosition);
+                gravtityButton.SetButtonCardinalPoint(CardinalPoint, !isAtRightPosition);
 
             pooled.UnPool();
             _pool.Remove((_pool[indexRand]));
