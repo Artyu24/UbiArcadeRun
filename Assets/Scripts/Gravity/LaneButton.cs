@@ -1,6 +1,7 @@
+using DG.Tweening;
 using UnityEngine;
 
-public class LaneButton : MonoBehaviour
+public class LaneButton : RythmeObject
 {
     [Header("Button Spawn Location")]
     [SerializeField]
@@ -11,10 +12,14 @@ public class LaneButton : MonoBehaviour
     private bool m_isLeftLane;
 
     private PlayerMovement m_playerMovement;
-
+    private bool _isTicking=true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
+        Metronome.instance.OnMusicStart.AddListener(SubToBeat);
+        SubToBeat(Metronome.instance._currentSong);
+        Metronome.instance.OnMusicStop.AddListener(UnSubToBeat);
+
         m_playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
         SetButtonCardinalPoint(m_buttonCardinalLine, m_isLeftLane);
     }
@@ -59,6 +64,14 @@ public class LaneButton : MonoBehaviour
                 else m_targetCardinalPoint = CardinalPoint.SOUTH;
                 break;
         }
+    }
+    public override void Tick()
+    {
+        if (!_isTicking)
+            return;
+        transform.DOLocalMoveZ(transform.localPosition.z - 5, 0.5f);
+        transform.DOPunchScale(new Vector3(1.1f, 0f, 1.1f), 0.2f).OnComplete(() => transform.localScale = Vector3.one);
+
     }
 
 
