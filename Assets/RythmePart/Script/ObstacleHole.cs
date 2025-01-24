@@ -33,7 +33,7 @@ public class ObstacleHole : RythmeObject,IDestructible,Ipoolable
     {
         if (!_isTicking)
             return;
-        transform.DOMoveX(transform.position.x + 5, 0.5f);
+        transform.DOLocalMoveZ(transform.localPosition.z - 5, 0.5f);
         _holeObject.transform.DOPunchScale(new Vector3(1.1f, 0f, 1.1f), 0.2f).OnComplete(() => _holeObject.transform.localScale = Vector3.one);
 
     }

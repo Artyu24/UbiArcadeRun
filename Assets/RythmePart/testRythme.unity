@@ -24804,37 +24804,6 @@ MonoBehaviour:
   <restSmoothTime>k__BackingField: 2
   beatScale: {x: 0.2, y: 3, z: 0.2}
   restScale: {x: -0.2, y: -0.2, z: -0.2}
---- !u!1 &1088880039
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1088880040}
-  m_Layer: 0
-  m_Name: spectrum
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1088880040
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1088880039}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.18, y: 1, z: 6.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1095393715
 GameObject:
   m_ObjectHideFlags: 0
@@ -48785,7 +48754,6 @@ SceneRoots:
   - {fileID: 1252726551}
   - {fileID: 465036615}
   - {fileID: 262410297}
-  - {fileID: 1088880040}
   - {fileID: 144225689}
   - {fileID: 1945407476}
   - {fileID: 1001544136}
