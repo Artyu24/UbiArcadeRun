@@ -60,7 +60,7 @@ public class obstaclespawner : MonoBehaviour, ITickable
             currenObject.transform.position = !isAtRightPosition ? _leftPos.position : _rightPos.position;
 
             if (currenObject.TryGetComponent(out LaneButton gravtityButton))
-                gravtityButton.SetButtonCardinalPoint(CardinalPoint, !isAtRightPosition);
+                gravtityButton.SetButtonCardinalPoint(CardinalPoint, isAtRightPosition);
 
             pooled.UnPool();
             _pool.Remove((_pool[indexRand]));
