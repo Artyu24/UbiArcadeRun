@@ -223,7 +223,7 @@ Transform:
   m_GameObject: {fileID: 229032127}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -256,7 +256,7 @@ Transform:
   m_GameObject: {fileID: 247746016}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -351,7 +351,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.66, y: 3.2, z: -15.7}
+  m_LocalPosition: {x: -6.66, y: 3.2, z: -17.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -814,7 +814,7 @@ Transform:
   m_GameObject: {fileID: 776722507}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.97, y: 1.08, z: -9.19}
+  m_LocalPosition: {x: -7.97, y: 1.08, z: -12.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -960,6 +960,7 @@ GameObject:
   - component: {fileID: 824374542}
   - component: {fileID: 824374541}
   - component: {fileID: 824374540}
+  - component: {fileID: 824374547}
   - component: {fileID: 824374539}
   m_Layer: 0
   m_Name: --Player--
@@ -1082,9 +1083,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ccc0f47931dd8c46bc32e75a96ac2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dist: 1
+  _dist: 2
   _scoreHit: 5
-  _damagePlayer: 5
   _lifeGainPlayer: 1
 --- !u!114 &824374541
 MonoBehaviour:
@@ -1117,7 +1117,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 1
+          m_FloatArgument: 60
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -1245,12 +1245,27 @@ Transform:
   m_GameObject: {fileID: 824374538}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.97, y: 1.08, z: -9.19}
+  m_LocalPosition: {x: -7.97, y: 1.08, z: -12.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &824374547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824374538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899aff537a8be6648bdb467615d88b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerMaxHP: 100
+  m_playerHP: 0
+  m_hpUI: {fileID: 1088287656}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,7 +1476,7 @@ Transform:
   m_GameObject: {fileID: 960186038}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2260,6 +2275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <BeatBeforeSpawnMin>k__BackingField: 1
+  <CardinalPoint>k__BackingField: 3
   <BeatBeforeSpawnMax>k__BackingField: 2
   <BeatBeforeFirstUtil>k__BackingField: 10
   <obstacles>k__BackingField:
@@ -2412,7 +2428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2957639533735329832, guid: 23fb04c9a4aba9242ac2211c04356611, type: 3}
       propertyPath: m_Name
-      value: ---SCORE MANAGER---
+      value: ---SCOREBOARD---
       objectReference: {fileID: 0}
     - target: {fileID: 2957639533735329836, guid: 23fb04c9a4aba9242ac2211c04356611, type: 3}
       propertyPath: m_Pivot.x
@@ -2573,6 +2589,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 601032038}
     m_Modifications:
     - target: {fileID: 970088927197352756, guid: 65746dd08f501454d8ba7b39594ee45a, type: 3}
+      propertyPath: <CardinalPoint>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 970088927197352756, guid: 65746dd08f501454d8ba7b39594ee45a, type: 3}
       propertyPath: <BeatBeforeFirstUtil>k__BackingField
       value: 10
       objectReference: {fileID: 0}
@@ -2716,6 +2736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <BeatBeforeSpawnMin>k__BackingField: 1
+  <CardinalPoint>k__BackingField: 0
   <BeatBeforeSpawnMax>k__BackingField: 2
   <BeatBeforeFirstUtil>k__BackingField: 10
   <obstacles>k__BackingField:
@@ -3084,6 +3105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <BeatBeforeSpawnMin>k__BackingField: 1
+  <CardinalPoint>k__BackingField: 2
   <BeatBeforeSpawnMax>k__BackingField: 2
   <BeatBeforeFirstUtil>k__BackingField: 10
   <obstacles>k__BackingField:

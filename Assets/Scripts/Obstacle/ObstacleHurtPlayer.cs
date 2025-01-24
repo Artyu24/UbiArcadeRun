@@ -6,18 +6,7 @@ public class ObstacleHurtPlayer : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        Debug.LogWarning("TRIGGER");
-
         if (other.CompareTag("Player")) 
-        {
-            PlayerHP.DamagePlayer(_damagePlayer);
-        }
-    }
-    private void OnCollisionEnter(Collision other)
-    {
-        Debug.LogWarning("COLLISION");
-        
-        if (other.transform.CompareTag("Player")) 
         {
             PlayerHP.DamagePlayer(_damagePlayer);
         }

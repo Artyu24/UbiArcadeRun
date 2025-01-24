@@ -12,9 +12,9 @@ public class PlayerHit : MonoBehaviour
     {
         if (ctx.started)
         {
-            Debug.DrawRay(transform.position + Vector3.forward, Vector3.forward * _dist, Color.cyan, 0.5f);
+            Debug.DrawRay(transform.position + (Vector3.forward / 2), Vector3.forward * _dist, Color.cyan, 0.5f);
             RaycastHit hit;
-            if (Physics.Raycast(transform.position + Vector3.forward, Vector3.forward, out hit, _dist))
+            if (Physics.Raycast(transform.position + (Vector3.forward / 2), Vector3.forward, out hit, _dist))
             {
                 IDestructible objectHit = hit.transform.GetComponent<IDestructible>();
                 if (objectHit != null)
