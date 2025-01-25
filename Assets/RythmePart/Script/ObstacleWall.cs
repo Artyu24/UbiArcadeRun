@@ -7,6 +7,7 @@ public class ObstacleWall : RythmeObject,IDestructible,Ipoolable
     [field:SerializeField]public Transform TargetPosition {  get; set; }
     [SerializeField] private GameObject _rotOnDestroy;
     [SerializeField] private GameObject _toDesactivate;
+    [SerializeField] private ObstacleHurtPlayer obstacleHurtPlayer;
     Vector3 _posoffset = Vector3.zero;
     private bool _isTicking;
     //private Song _currentSong;
@@ -41,12 +42,14 @@ public class ObstacleWall : RythmeObject,IDestructible,Ipoolable
     {
         _toDesactivate.GetComponent<MeshRenderer>().enabled = false;
         _rotOnDestroy.transform.DOLocalRotate(new Vector3(133.474f, 0, 0), 0.2f).SetEase(Ease.OutBounce);
+        obstacleHurtPlayer.enabled = false;
         //Destroy(gameObject);
     }
     public void UnPool()
     {
-        _isTicking=true;
+        _isTicking= true;
         transform.localScale = Vector3.one;
+        obstacleHurtPlayer.enabled = true;
     }
     public void Pool()
     {

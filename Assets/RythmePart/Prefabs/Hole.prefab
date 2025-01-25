@@ -294,8 +294,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.5969744, y: 1.8993822, z: 1}
-  m_Center: {x: 0.7984872, y: 0.44969124, z: 0}
+  m_Size: {x: 1.5400221, y: 1.8993822, z: 1}
+  m_Center: {x: 0.27001107, y: 0.44969124, z: 0}
 --- !u!114 &3619355212606767006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,3 +311,4 @@ MonoBehaviour:
   _mainBeatIndex: 0
   _plank: {fileID: 6052829995999454826}
   _holeObject: {fileID: 7528783486780710445}
+  obstacleHurtPlayer: {fileID: 823229583001677063}
