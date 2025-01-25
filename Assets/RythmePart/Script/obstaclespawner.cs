@@ -54,11 +54,11 @@ public class obstaclespawner : MonoBehaviour, ITickable
         if (_pool[indexRand].TryGetComponent(out Ipoolable pooled))
         {
             GameObject currenObject = _pool[indexRand];
-            bool isAtRightPosition = Random.value < 0.5f;
-            currenObject.transform.position = !isAtRightPosition ? _leftPos.position : _rightPos.position;
+            bool isleftPosition = Random.value < 0.5f;
+            currenObject.transform.position = isleftPosition ? _rightPos.position : _leftPos.position;
 
             if (currenObject.TryGetComponent(out LaneButton gravtityButton))
-                gravtityButton.SetButtonCardinalPoint(CardinalPoint, isAtRightPosition);
+                gravtityButton.SetButtonCardinalPoint(CardinalPoint, isleftPosition);
 
             pooled.UnPool();
             _pool.Remove((_pool[indexRand]));
@@ -75,12 +75,12 @@ public class obstaclespawner : MonoBehaviour, ITickable
         if (_currentBeatBeforeFirstUtil <= 0)
         {
             _currentBeatBeforeFirstUtil= Random.Range(BeatBeforeSpawnMin*10, BeatBeforeSpawnMax*10);
-            bool isAtRightPosition = Random.value < 0.5f;
-            GameObject go= Instantiate(utilObject[0], !isAtRightPosition ? _leftPos.position : _rightPos.position, transform.rotation);
+            bool isAtLeftPosition = Random.value < 0.5f;
+            GameObject go= Instantiate(utilObject[0], !isAtLeftPosition ? _rightPos.position : _leftPos.position, transform.rotation);
 
             if (go.TryGetComponent(out LaneButton gravtityButton))
             {
-                gravtityButton.SetButtonCardinalPoint(CardinalPoint, !isAtRightPosition);
+                gravtityButton.SetButtonCardinalPoint(CardinalPoint, !isAtLeftPosition);
             }
             _currentBeatsLast++;
             return;
