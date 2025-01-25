@@ -18,6 +18,7 @@ public class ScoreSystem : MonoBehaviour
     private TextMeshProUGUI m_scoreComboUI;
 
     public static ScoreSystem Instance { get; private set; }
+    public int Score { get { return m_score; } }
 
     private void Awake()
     {
