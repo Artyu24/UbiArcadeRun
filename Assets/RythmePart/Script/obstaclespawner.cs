@@ -41,8 +41,6 @@ public class obstaclespawner : MonoBehaviour, ITickable
                 _pool.Add(Instantiate(obstacles[j],new Vector3(1000,1000,1000), transform.rotation));
             }
         }
-        
-        
     }
     public void SpawnObstacle()
     {
@@ -70,46 +68,46 @@ public class obstaclespawner : MonoBehaviour, ITickable
         //GameObject newobstacle = Instantiate(obstacles[Random.Range(0, obstacles.Count)], indexRand == 0 ? _leftPos.position : _rightPos.position, Quaternion.identity);
         _currentBeatsLast = Random.Range(BeatBeforeSpawnMin, BeatBeforeSpawnMax + 1);
     }
-    
-        public void RemoveFromPool(int poolindex)
+    public void Tick()
+    {
+        _currentBeatsLast--;
+        _currentBeatBeforeFirstUtil--;
+        if (_currentBeatBeforeFirstUtil <= 0)
         {
-
-
-        }
-        public void Tick()
-        {
-            _currentBeatsLast--;
-            _currentBeatBeforeFirstUtil--;
-            if (_currentBeatBeforeFirstUtil <= 0)
-            {
             _currentBeatBeforeFirstUtil= Random.Range(BeatBeforeSpawnMin*10, BeatBeforeSpawnMax*10);
             bool isAtRightPosition = Random.value < 0.5f;
-                GameObject go= Instantiate(utilObject[0], !isAtRightPosition ? _leftPos.position : _rightPos.position, transform.rotation);
+            GameObject go= Instantiate(utilObject[0], !isAtRightPosition ? _leftPos.position : _rightPos.position, transform.rotation);
+
             if (go.TryGetComponent(out LaneButton gravtityButton))
+            {
                 gravtityButton.SetButtonCardinalPoint(CardinalPoint, !isAtRightPosition);
+            }
+            _currentBeatsLast++;
+            return;
         }
-            else if (_currentBeatsLast <= 0)
+        else
+            if (_currentBeatsLast <= 0)
             {
                 SpawnObstacle();
                 _currentBeatsLast = Random.Range(BeatBeforeSpawnMin, BeatBeforeSpawnMax + 1);
             }
-        }
-        public void SubTick()
-        {
+    }
+    public void SubTick()
+    {
 
-        }
+    }
 
 
-        public void SubToBeat(Song song)
-        {
-            _currentSong = song;
-            _currentSong.Beat1.AddListener(Tick);
-        }
+    public void SubToBeat(Song song)
+    {
+        _currentSong = song;
+        _currentSong.Beat1.AddListener(Tick);
+    }
 
-        public void UnSubToBeat()
-        {
-            _currentSong.Beat1.RemoveListener(Tick);
-        }
+    public void UnSubToBeat()
+    {
+        _currentSong.Beat1.RemoveListener(Tick);
+    }
         
     IEnumerator BackToPoolDelay(GameObject topool)
     {

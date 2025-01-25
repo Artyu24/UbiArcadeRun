@@ -22,6 +22,7 @@ public class LaneButton : RythmeObject
 
         m_playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
         SetButtonCardinalPoint(m_buttonCardinalLine, m_isLeftLane);
+        Tick();
     }
 
 
