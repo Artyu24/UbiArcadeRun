@@ -311,4 +311,4 @@ MonoBehaviour:
   _mainBeatIndex: 0
   _plank: {fileID: 6052829995999454826}
   _holeObject: {fileID: 7528783486780710445}
-  obstacleHurtPlayer: {fileID: 823229583001677063}
+  obstacleHurtPlayer: {fileID: 2811182457835951977}

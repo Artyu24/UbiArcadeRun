@@ -8,12 +8,12 @@ public class ObstacleHole : RythmeObject,IDestructible,Ipoolable
     [SerializeField] private GameObject _holeObject;
     private Vector3 _PlankScale;
     private bool _isTicking;
-    [SerializeField] private ObstacleHurtPlayer obstacleHurtPlayer;
+    [SerializeField] private GameObject obstacleHurtPlayer;
     [Button]
     public void Destroy()
     {
         _plank.transform.DOScale(_PlankScale,0.5f).SetEase(Ease.OutBounce);
-        obstacleHurtPlayer.enabled=false;
+        obstacleHurtPlayer.SetActive(false);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -50,7 +50,7 @@ public class ObstacleHole : RythmeObject,IDestructible,Ipoolable
         _holeObject.transform.localScale = Vector3.one;
         _plank.transform.localScale= Vector3.zero;
         _isTicking = true;
-        obstacleHurtPlayer.enabled = true;
+        obstacleHurtPlayer.SetActive(true);
         //throw new System.NotImplementedException();
     }
 }
