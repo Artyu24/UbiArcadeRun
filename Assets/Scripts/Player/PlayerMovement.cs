@@ -39,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (ctx.started)
         {
+            if (isChangingLane) return;
+            
             //Switch Lane
             _isLeftLane = !_isLeftLane;
 
