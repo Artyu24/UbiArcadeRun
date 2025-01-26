@@ -1,3 +1,4 @@
+using SMP_LIG;
 using TMPro;
 using UnityEngine;
 
@@ -36,8 +37,9 @@ public class PlayerHP : MonoBehaviour
         m_playerHP = Mathf.Clamp(m_playerHP - damage, 0, m_playerMaxHP);
         UpdateHPUI();
         if (m_playerHP > 0) return;
-        m_isDead = true;
+        PlayerDeath();
     }
+    
 
     public void Heal(float heal)
     {
@@ -50,5 +52,10 @@ public class PlayerHP : MonoBehaviour
     {
         if (m_playerHP > 0) m_hpUI.text = "HP : " + m_playerHP;
         else m_hpUI.text = "YOU LOSE !";
+    }
+    private void PlayerDeath()
+    {
+        m_isDead = true;
+        ScoreManagerArcade.SaveScore.Invoke(ScoreSystem.Instance.Score);
     }
 }
